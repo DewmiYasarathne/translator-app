@@ -1,0 +1,44 @@
+// script.js — simple frontend that calls /api/translate
+document.getElementById('translateBtn').addEventListener('click', translate);
+document.getElementById('clearBtn').addEventListener('click', () => {
+  document.getElementById('input').value = '';
+  document.getElementById('output').value = '';
+  document.getElementById('status').innerText = '';
+});
+
+async function translate() {
+  const direction = document.getElementById('direction').value; // en-to-vi or vi-to-en
+  const text = document.getElementById('input').value.trim();
+  const statusEl = document.getElementById('status');
+  const outputEl = document.getElementById('output');
+
+  if (!text) {
+    statusEl.innerText = 'Please enter text to translate.';
+    return;
+  }
+
+  statusEl.innerText = 'Translating…';
+  outputEl.value = '';
+
+  try {
+    const resp = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, direction })
+    });
+
+    if (!resp.ok) {
+      const msg = await resp.text();
+      throw new Error(`Server error: ${resp.status} ${msg}`);
+    }
+
+    const data = await resp.json();
+    // We expect server to return { translation: "..." }
+    outputEl.value = data.translation ?? '[no translation returned]';
+    statusEl.innerText = 'Done.';
+  } catch (err) {
+    console.error(err);
+    statusEl.innerText = 'Error: ' + err.message;
+    outputEl.value = '';
+  }
+}

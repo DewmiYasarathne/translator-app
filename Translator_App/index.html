@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>English ⇄ Vietnamese Translator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width:800px; margin:30px auto; padding:10px; }
+    label { display:block; margin-top:12px; font-weight:600; }
+    textarea { width:100%; min-height:100px; padding:8px; font-size:14px; }
+    select, button { padding:8px 12px; font-size:14px; margin-top:8px; }
+    .row { display:flex; gap:10px; align-items:center; margin-top:8px; }
+    #output { background:#f7f7f7; }
+    .hint { color:#666; font-size:13px; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <h1>English ⇄ Vietnamese Translator</h1>
+
+  <label for="direction">Translation direction</label>
+  <select id="direction">
+    <option value="en-to-vi">English → Vietnamese</option>
+    <option value="vi-to-en">Vietnamese → English</option>
+  </select>
+
+  <label for="input">Enter your text</label>
+  <textarea id="input" placeholder="Type text here..."></textarea>
+
+  <div class="row">
+    <button id="translateBtn">Translate</button>
+    <button id="clearBtn" type="button">Clear</button>
+    <span id="status" class="hint"></span>
+  </div>
+
+  <label for="output">Translated text</label>
+  <textarea id="output" readonly></textarea>
+
+  <p class="hint">Note: translation happens via the server (secure). Do not paste any secrets here.</p>
+
+  <script src="script.js"></script>
+</body>
+</html>
