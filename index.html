@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translator App</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
+        input, textarea, select, button { width: 100%; margin: 10px 0; padding: 10px; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Translator App</h1>
+
+    <textarea id="inputText" placeholder="Enter text here..." rows="4"></textarea>
+
+    <select id="direction">
+        <option value="en-to-vi">English → Vietnamese</option>
+        <option value="vi-to-en">Vietnamese → English</option>
+    </select>
+
+    <button id="translateBtn">Translate</button>
+
+    <textarea id="outputText" placeholder="Translation..." rows="4" readonly></textarea>
+
+    <script src="script.js"></script>
+</body>
+</html>
